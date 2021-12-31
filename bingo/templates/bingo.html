@@ -1,16 +1,12 @@
 <html>
-    <body>
+    <body style="text-align: center;">
         {% if numero_sorteado %}
-        <h1> {{ numero_sorteado}} </h1>
+            <h1 style="font-size: 600; margin: 0;"> {{ numero_sorteado }} </h1>
         {% endif %}
-        <h1> {{ sorteados }}</h1>
-        {% for numero in numeros_bingo %}
-            {% if numero in sorteados%}
-            <p style="color: green;">{{ numero }}</p>
-            {% else %}
-            <p>{{ numero }}</p>
-            {% endif %}
-        {% endfor %}
+
+        {% if sorteados %}
+            <h1> {{ sorteados }}</h1>
+        {% endif %}
 
         <form method="post"> 
             {% csrf_token %}
@@ -18,7 +14,7 @@
         </form>
         <form action="{% url 'reseta' %}" method="get"> 
             {% csrf_token %}
-            <button type="submit">Resetar</button>
+            <button type="submit" onclick="return confirm('Realmente deseja iniciar outro bingo?')">Novo bingo</button>
         </form>
     </body>
 </html>

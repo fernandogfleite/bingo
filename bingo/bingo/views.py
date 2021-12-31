@@ -1,4 +1,4 @@
-from random import randint
+from random import choice
 
 from django.shortcuts import redirect, render
 from django.views import View
@@ -8,10 +8,7 @@ sorteados = list()
 numeros_bingo = list(range(1, 91))
 
 def sortear_numero():
-    numero_sorteado = randint(1,90)
-
-    if numero_sorteado in sorteados:
-        return sortear_numero()
+    numero_sorteado = choice([i for i in range(1,91) if i not in sorteados])
     
     return numero_sorteado
 
