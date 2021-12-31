@@ -1,0 +1,24 @@
+<html>
+    <body>
+        {% if numero_sorteado %}
+        <h1> {{ numero_sorteado}} </h1>
+        {% endif %}
+        <h1> {{ sorteados }}</h1>
+        {% for numero in numeros_bingo %}
+            {% if numero in sorteados%}
+            <p style="color: green;">{{ numero }}</p>
+            {% else %}
+            <p>{{ numero }}</p>
+            {% endif %}
+        {% endfor %}
+
+        <form method="post"> 
+            {% csrf_token %}
+            <button type="submit">Sortear</button>
+        </form>
+        <form action="{% url 'reseta' %}" method="get"> 
+            {% csrf_token %}
+            <button type="submit">Resetar</button>
+        </form>
+    </body>
+</html>
